@@ -1,0 +1,2 @@
+Burada web arayüzü hazır bir şekilde içerinden python kodunu çalıştırıyprum bu deneme.
+app.py dosyasını çalıştırmada sorun yaşadım ama neticede çalıştı.

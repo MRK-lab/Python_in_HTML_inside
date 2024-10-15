@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Program Runner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="company-name">YOUREYE</div>
+    <div class="container">
+        <h1>Run Python Program</h1>
+        <button class="run-btn" onclick="startApplication()">Uygulamayı Başlat</button>
+        <div class="output-container" id="output">
+            <div class="loader" id="loader"></div>
+        </div>
+    </div>
+
+    <!-- Footer Alanı -->
+    <div class="footer">
+        <p>
+            <a href="https://www.instagram.com/youreye_yapay_zeka/" target="_blank">Instagram</a> |
+            <a href="https://www.youtube.com/@YoureyeTeknoloji" target="_blank">YouTube</a> |
+            <a href="https://www.youreye.com.tr/" target="_blank">Web Sitesi</a>
+        </p>
+        <p>2021</p>
+
+    </div>
+
+    <script>
+        function startApplication() {
+            // Yükleniyor simgesi
+            document.getElementById('loader').style.display = 'block';
+    
+            fetch('http://127.0.0.1:5000/run_app', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data); // Konsolda dönen mesajı görüntüle
+                    document.getElementById('loader').style.display = 'none'; // Yükleniyor simgesini gizle
+                    document.getElementById('output').innerText = data;
+                })
+                .catch(error => {
+                    console.error('Hata:', error); // Hata mesajını konsolda detaylı göster
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('output').innerText = "Bir hata oluştu: " + error.message; // Hata mesajını kullanıcıya göster
+                });
+        }
+    </script>
+    
+</body>
+
+</html>
